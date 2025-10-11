@@ -1,5 +1,10 @@
 using System;
 
+// Author: Spencer Ogle
+// Date: Oct 2025
+// Description: Journal program for CSE210 Develop 02 assignment.
+// Includes rating feature for stretch requirement.
+
 class Program
 {
     static void Main()
