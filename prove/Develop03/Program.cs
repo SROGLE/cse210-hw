@@ -5,90 +5,45 @@ class Program
     static void Main(string[] args)
     {
         Console.Clear();
-        Reference reference = new Reference();
-        reference.LoadReference();
 
-        Scripture scripture = new Scripture();
-        scripture.LoadScriptures();
+        // Create a Reference using the required constructors.
+        // Example A: single verse
+        // Reference r = new Reference("John", 3, 16);
 
-        Word word = new Word();
+        // Example B: verse range (matches UML intent)
+        Reference r = new Reference("Matthew", 5, 14, 16);
 
-        Console.WriteLine("\n**** Welcome to the Scripture Memorizer App ****\n");
+        string fullText =
+            "Ye are the light of the world. A city that is set on an hill cannot be hid. " +
+            "Neither do men light a candle, and put it under a bushel, but on a candlestick; " +
+            "and it giveth light unto all that are in the house. Let your light so shine before men, " +
+            "that they may see your good works, and glorify your Father which is in heaven.";
 
-        int choice = 0;
-        while (choice != 3)
+        Scripture s = new Scripture(r, fullText);
+
+        // Show once, then progressively hide until everything is hidden or user quits.
+        Console.WriteLine(s.ToDisplay());
+
+        while (true)
         {
-            choice = UserChoice();
-
-            switch (choice)
+            Console.WriteLine();
+            Console.Write("Press ENTER to hide words (or type 'quit' to end): ");
+            string input = Console.ReadLine();
+            if (input != null && input.Trim().ToLower() == "quit")
             {
-                case 1:
-                    reference.ReferenceDisplay();
-                    break;
+                break;
+            }
 
-                case 2:
-                    {
-                        string script = scripture.RandomScripture();
-                        string ref1 = reference.GetReference(scripture);
+            s.HideRandom(3); // hide a few each step
 
-                        word.GetRenderedText(scripture);
-                        word.GetRenderedRef(scripture);
+            Console.Clear();
+            Console.WriteLine(s.ToDisplay());
 
-                        while (word._hidden.Count < word._result.Length)
-                        {
-                            word.Show(ref1);
-                            word.GetReadKey();
-                        }
-
-                        word.Show(ref1);
-                        break;
-                    }
-
-                case 3:
-                    Console.WriteLine("\n*** Thanks for using the Scripture Memorizer! ***\n");
-                    break;
-
-                default:
-                    Console.WriteLine("\nInvalid choice, please try again.");
-                    break;
+            if (s.AllHidden())
+            {
+                // Per requirement: program ends when the scripture is completely hidden.
+                break;
             }
         }
     }
-
-    static int UserChoice()
-    {
-        string menu = @"
-===========================================
-Please select one of the following choices:
-1. Display available scripture references
-2. Randomly select a scripture to memorize
-Q. Quit
-===========================================
-What would you like to do?  ";
-        Console.Write(menu);
-
-        string input = Console.ReadLine();
-        if (input != null && input.Trim().ToLower() == "q")
-        {
-            return 3;
-        }
-
-        int choice;
-        try
-        {
-            choice = int.Parse(input);
-        }
-        catch
-        {
-            choice = 0;
-        }
-        return choice;
-    }
 }
-// -------------------- Exceeding Requirements --------------------
-// Added a small menu system that lets the user pick between 
-// showing references or starting a random scripture. 
-// Also included multiple scriptures from different books 
-// so each session feels unique and varied.
-// ---------------------------------------------------------------
-
