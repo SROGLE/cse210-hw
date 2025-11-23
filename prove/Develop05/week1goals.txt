@@ -1,0 +1,4 @@
+0
+SimpleGoal:Happy Dance,Dance After Postive ,50,False
+EternalGoal:Study,Study Scriptures,80
+ChecklistGoal:Get Food,Grocieries weekly,75,150,4,0
