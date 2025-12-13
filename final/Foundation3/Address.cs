@@ -15,15 +15,8 @@ public class Address
         _country = country;
     }
 
-    public bool IsInUSA()
+    public string GetFullAddress()
     {
-        return _country.ToLower() == "usa" || _country.ToLower() == "united states";
-    }
-
-    public void Display()
-    {
-        Console.WriteLine(_street);
-        Console.WriteLine($"{_city}, {_state}");
-        Console.WriteLine(_country);
+        return $"{_street}, {_city}, {_state}, {_country}";
     }
 }

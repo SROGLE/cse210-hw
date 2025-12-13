@@ -16,13 +16,9 @@ public class Customer
         return _address.IsInUSA();
     }
 
-    public string GetName()
+    public void DisplayShippingLabel()
     {
-        return _name;
-    }
-
-    public Address GetAddress()
-    {
-        return _address;
+        Console.WriteLine(_name);
+        _address.Display();
     }
 }

@@ -4,7 +4,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Create order 1 (USA customer)
         Address address1 = new Address("123 Main St", "Rexburg", "ID", "USA");
         Customer customer1 = new Customer("John Smith", address1);
         Order order1 = new Order(customer1);
@@ -14,12 +13,12 @@ class Program
         order1.AddProduct(new Product("Keyboard", "C789", 75.00, 1));
 
         Console.WriteLine("Order 1:");
-        Console.WriteLine(order1.GetPackingLabel());
-        Console.WriteLine(order1.GetShippingLabel());
+        order1.DisplayPackingLabel();
+        Console.WriteLine();
+        order1.DisplayShippingLabel();
         Console.WriteLine($"\nTotal Cost: ${order1.CalculateTotalCost():F2}");
         Console.WriteLine("\n" + new string('-', 50) + "\n");
 
-        // Create order 2 (International customer)
         Address address2 = new Address("456 Maple Ave", "Toronto", "ON", "Canada");
         Customer customer2 = new Customer("Sarah Johnson", address2);
         Order order2 = new Order(customer2);
@@ -28,8 +27,9 @@ class Program
         order2.AddProduct(new Product("Webcam", "E202", 89.99, 1));
 
         Console.WriteLine("Order 2:");
-        Console.WriteLine(order2.GetPackingLabel());
-        Console.WriteLine(order2.GetShippingLabel());
+        order2.DisplayPackingLabel();
+        Console.WriteLine();
+        order2.DisplayShippingLabel();
         Console.WriteLine($"\nTotal Cost: ${order2.CalculateTotalCost():F2}");
     }
 }

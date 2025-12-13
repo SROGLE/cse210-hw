@@ -11,17 +11,7 @@ public class Comment
         _text = text;
     }
 
-    public string GetName()
-    {
-        return _name;
-    }
-
-    public string GetText()
-    {
-        return _text;
-    }
-
-    public void DisplayComment()
+    public void Display()
     {
         Console.WriteLine($"  {_name}: {_text}");
     }

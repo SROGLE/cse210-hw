@@ -20,13 +20,8 @@ public class Product
         return _price * _quantity;
     }
 
-    public string GetName()
+    public void DisplayPackingInfo()
     {
-        return _name;
-    }
-
-    public string GetProductId()
-    {
-        return _productId;
+        Console.WriteLine($"{_name} (ID: {_productId})");
     }
 }

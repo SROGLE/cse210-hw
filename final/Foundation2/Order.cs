@@ -24,7 +24,6 @@ public class Order
             total += product.GetTotalCost();
         }
 
-        // Add shipping cost
         if (_customer.IsInUSA())
         {
             total += 5;
@@ -37,21 +36,18 @@ public class Order
         return total;
     }
 
-    public string GetPackingLabel()
+    public void DisplayPackingLabel()
     {
-        string label = "Packing Label:\n";
+        Console.WriteLine("Packing Label:");
         foreach (Product product in _products)
         {
-            label += $"{product.GetName()} (ID: {product.GetProductId()})\n";
+            product.DisplayPackingInfo();
         }
-        return label;
     }
 
-    public string GetShippingLabel()
+    public void DisplayShippingLabel()
     {
-        string label = "Shipping Label:\n";
-        label += $"{_customer.GetName()}\n";
-        label += _customer.GetAddress().GetFullAddress();
-        return label;
+        Console.WriteLine("Shipping Label:");
+        _customer.DisplayShippingLabel();
     }
 }
